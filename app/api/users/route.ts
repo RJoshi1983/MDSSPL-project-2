@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   try {
     const user = await requireUser(req);
     requireRole(user, ['admin', 'staff']);
-    return Response.json({ users: await listProfiles() });
+    return Response.json({ users: await listProfiles(user.db) });
   } catch (e) {
     return errorResponse(e);
   }

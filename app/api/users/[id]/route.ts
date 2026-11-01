@@ -13,7 +13,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     const { role } = await req.json().catch(() => ({}));
     if (!ROLES.some((r) => r.id === role)) throw new HttpError(400, 'Unknown role.');
     if (params.id === user.id && role !== 'admin') throw new HttpError(400, 'You cannot remove your own admin role.');
-    await setRole(params.id, role as Role);
+    await setRole(user.db, params.id, role as Role);
     return Response.json({ ok: true });
   } catch (e) {
     return errorResponse(e);

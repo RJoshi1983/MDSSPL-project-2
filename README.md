@@ -12,7 +12,7 @@ This is **version 0.1**: every service works end to end in a simple form. Each o
 | --- | --- |
 | `app/` (except `app/api/`) | **Front end**: the pages people see (front page, sign-in pages, hub, data-entry steps, report, admin) |
 | `app/api/` | **Back end**: the API the pages call to save and load data and to check permissions |
-| `lib/server/` | Back-end helpers: database access (`store.ts`) and who-can-do-what rules (`auth.ts`) |
+| `lib/server/` | Back-end helpers: database access (`store.ts`) and who-can-do-what rules (`auth.ts`); the same rules are enforced again inside the database |
 | `modules/<service>/` | **One folder per service**: its steps, questions and calculations, plus its own `README.md` and `CHANGELOG.md` |
 | `lib/factors.ts` | Emission factor table (example values; check them before issuing reports) |
 | `supabase/schema.sql` | **Database**: tables, security rules and the sign-up trigger |
@@ -58,16 +58,12 @@ The site now runs in **demo mode**: a yellow banner says so, you can sign in as 
 
 1. Go to **supabase.com → New project**. Pick a name, a strong database password and the region **Mumbai** (or the closest one to you). Wait for it to finish.
 2. In the left menu, open **SQL Editor → New query**. Open `supabase/schema.sql` from this folder in Notepad, copy everything, paste it in and click **Run**. "Success" means the tables are ready.
-3. In **Project Settings → API**, copy three values:
-   - **Project URL**
-   - the **anon / publishable** key
-   - the **service_role / secret** key (keep this one private)
+3. In **Project Settings → API Keys**, copy two values: the **Project URL** and the **publishable / anon** key. (No secret key is needed: the database's own rules in `schema.sql` decide what each person can see and do.)
 4. In Render, open your service → **Environment** → **Add environment variable**, and add:
    - `NEXT_PUBLIC_SUPABASE_URL` = the Project URL
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = the anon key
-   - `SUPABASE_SERVICE_ROLE_KEY` = the service_role key
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = the publishable / anon key
 
-   Click **Save, rebuild and deploy**.
+   Click **Save, rebuild and deploy**. Also in Supabase, under **Authentication → URL Configuration**, set **Site URL** to your website address (for example `https://mdsspl-service-hub.onrender.com`) so that confirmation emails link to the right place.
 5. Open your site, go to **Client sign-in → Create an account**, and register yourself.
 6. Make yourself admin: in Supabase **SQL Editor**, run this with your own email:
    ```sql
@@ -99,7 +95,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. Without a `.env.local` file it runs in demo mode. To connect Supabase locally, copy `.env.example` to `.env.local` and fill in the three values.
+Open http://localhost:3000. Without a `.env.local` file it runs in demo mode. To connect Supabase locally, copy `.env.example` to `.env.local` and fill in the two values.
 
 ## Important notes
 

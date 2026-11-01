@@ -11,10 +11,10 @@ export async function GET(req: NextRequest) {
     const user = await requireUser(req);
     const projects =
       user.role === 'client'
-        ? await listProjects({ ownerId: user.id })
+        ? await listProjects(user.db, { ownerId: user.id })
         : user.role === 'verifier'
-          ? await listProjects({ minStatus: VERIFIER_STATUSES })
-          : await listProjects({});
+          ? await listProjects(user.db, { minStatus: VERIFIER_STATUSES })
+          : await listProjects(user.db, {});
     // the list does not need every data entry
     return Response.json({ projects: projects.map(({ data, ...p }) => p) });
   } catch (e) {
@@ -34,8 +34,8 @@ export async function POST(req: NextRequest) {
     const fy = String(body.financial_year || '').slice(0, 20);
     // staff/admin may open a project on behalf of a client
     const owner_id = user.role !== 'client' && body.owner_id ? String(body.owner_id) : user.id;
-    const p = await createProject({ owner_id, service: service.id, title, financial_year: fy, data: { general: { organisation: user.organisation, financial_year: fy } } });
-    await logChange(p.id, user.id, 'created', { service: service.id, title });
+    const p = await createProject(user.db, { owner_id, service: service.id, title, financial_year: fy, data: { general: { organisation: user.organisation, financial_year: fy } } });
+    await logChange(user.db, p.id, user.id, 'created', { service: service.id, title });
     return Response.json({ project: p }, { status: 201 });
   } catch (e) {
     return errorResponse(e);

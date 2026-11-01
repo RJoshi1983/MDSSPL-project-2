@@ -8,9 +8,9 @@ export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     const user = await requireUser(req);
-    const project = await getProject(params.id);
+    const project = await getProject(user.db, params.id);
     if (!project || !canView(user, project)) throw new HttpError(404, 'Project not found.');
-    return Response.json({ history: await getHistory(project.id) });
+    return Response.json({ history: await getHistory(user.db, project.id) });
   } catch (e) {
     return errorResponse(e);
   }

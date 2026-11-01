@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 async function load(req: NextRequest, id: string) {
   const user = await requireUser(req);
-  const project = await getProject(id);
+  const project = await getProject(user.db, id);
   if (!project || !canView(user, project)) throw new HttpError(404, 'Project not found.');
   return { user, project };
 }
@@ -58,10 +58,10 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     }
     if (!Object.keys(patch).length) throw new HttpError(400, 'Nothing to save.');
 
-    const updated = await updateProject(project.id, patch);
-    if (body.step !== undefined) await logChange(project.id, user.id, 'saved step', { step: body.step });
-    if (body.status !== undefined) await logChange(project.id, user.id, 'status changed', { from: project.status, to: body.status, note: String(body.note || '').slice(0, 500) });
-    if (body.title !== undefined) await logChange(project.id, user.id, 'renamed', { title: patch.title });
+    const updated = await updateProject(user.db, project.id, patch);
+    if (body.step !== undefined) await logChange(user.db, project.id, user.id, 'saved step', { step: body.step });
+    if (body.status !== undefined) await logChange(user.db, project.id, user.id, 'status changed', { from: project.status, to: body.status, note: String(body.note || '').slice(0, 500) });
+    if (body.title !== undefined) await logChange(user.db, project.id, user.id, 'renamed', { title: patch.title });
     return Response.json({ project: updated });
   } catch (e) {
     return errorResponse(e);

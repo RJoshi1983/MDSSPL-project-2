@@ -7,7 +7,8 @@ export const dynamic = 'force-dynamic';
 // GET /api/me — who am I?
 export async function GET(req: NextRequest) {
   try {
-    const user = await requireUser(req);
+    const { db, ...user } = await requireUser(req);
+    void db;
     return Response.json({ user, demo: DEMO_MODE });
   } catch (e) {
     return errorResponse(e);
