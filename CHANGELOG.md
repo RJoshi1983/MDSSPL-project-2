@@ -2,6 +2,12 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.4.0
+- Online payments: "Pay online now" on the payment page. The client chooses credit/debit card, UPI or net banking and the provider (Razorpay or Cashfree); the payment is confirmed with the provider on the server (signature / status check) and recorded on the order.
+- Card convenience fee set by PAY_CARD_FEE_PCT (UPI and net banking free). International orders: card only, charged in INR, converted by the client's bank.
+- Free UPI: PAY_UPI_ID in Render turns on direct UPI with an automatic QR code. Help box explains the UTR number for NEFT, RTGS, IMPS and UPI.
+- Fix: the order "Cancel order" button works again (a helper from 0.3.1 had the same name).
+
 ## 2026-11-02 — version 0.3.2
 - Payment: the "Before you pay" step no longer blocks the client. The two acceptance boxes can be ticked straight away (ticking confirms that document), a line says exactly what is still needed, and the document reader is readable in dark mode. After "Accept and continue to payment" the bank transfer / cheque details and the payment form open.
 

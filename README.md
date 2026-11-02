@@ -114,6 +114,24 @@ The key stays on the server and is never sent to people's browsers. Without a ke
 
 In Supabase, under **Authentication → URL Configuration**, set **Site URL** to `https://www.mdsspl.co.in` so that sign-up and password e-mails link to the website.
 
+## Online payments (card, UPI, net banking) — you decide in Render
+
+The payment page shows **Pay online now** to the client: they choose **Credit or debit card**, **UPI** or **Net banking**, and then the provider they prefer, **Razorpay** or **Cashfree**. The money is confirmed with the provider automatically, and the order is marked as paid with the provider's payment ID. Below that, the free direct options (your UPI ID with a QR code, bank transfer, cheque) stay available, with help on finding the **UTR** number.
+
+International clients (orders in another currency) see **card payment only**. Their card is charged in rupees and their bank converts it at its own exchange rate.
+
+Everything is set in **Render → mdsspl-service-hub → Environment** (no code changes needed):
+
+| Setting | Example | What it does |
+| --- | --- | --- |
+| `PAY_GATEWAYS` | `razorpay,cashfree` | Which providers the client may choose, in this order. Only providers with keys are shown. |
+| `PAY_CARD_FEE_PCT` | `2` | Convenience fee added to **card** payments only (0 to 5). UPI and net banking are free for the client. |
+| `PAY_UPI_ID` | `mdsspl@idfcbank` | Your UPI ID for free direct UPI payments; a QR code is drawn automatically. |
+| `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` | `rzp_test_…` / secret | From Razorpay Dashboard → Account & Settings → API Keys. Test keys (`rzp_test_`) = test mode; live keys = real money. |
+| `CASHFREE_APP_ID` / `CASHFREE_SECRET_KEY` / `CASHFREE_ENV` | … / … / `sandbox` or `production` | From Cashfree Dashboard → Developers → API Keys. |
+
+Secret keys stay on the server and never reach the browser. If a provider has no keys, it simply isn't offered.
+
 ---
 
 ## Making changes
