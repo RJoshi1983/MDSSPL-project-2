@@ -1,8 +1,22 @@
 # MDSSPL Service Hub
 
-One web app for all MDSSPL sustainability services: GHG, ESG, BRSR, ZWTL, LCA / PCF, Water Audit, CNA, Net Zero and Energy Audit. Clients enter data step by step, consultants and verifiers review it, and every project produces a report that can be saved as a PDF.
+The MDSSPL website: registration, services, orders and payment, manuals, data collection, calculations, reports and certificates for all MDSSPL sustainability services.
 
-This is **version 0.1**: every service works end to end in a simple form. Each one can then be deepened on its own.
+**Version 0.3:** the home page (`/`) is the full **MDSSPL Service Hub app** built in Claude, in `public/mdsspl.html`. This server gives it the back end it needs:
+
+| Address the app calls | Answered by | What it does |
+| --- | --- | --- |
+| `/.netlify/functions/supabase-config` | `app/api/supabase-config/route.ts` | Tells the app which Supabase database to use (public key only) |
+| `/.netlify/functions/ai` | `app/api/ai/route.ts` | Claude AI for file extraction, translation, report text and the help desk |
+| Supabase (`kv_store`, `events`, `certificates`, `mail_log`) | Supabase project **Mdsspl Service Hub** | Sign-in and saving each user's data, with row-level security |
+
+The earlier simple hub is still at `/classic` (sign-in pages at `/sign-in/client`, and so on).
+
+### How a change reaches the website
+
+1. The app is changed in Claude (the artifact).
+2. Claude copies the new version into `public/mdsspl.html` and commits it to GitHub (MDSSPL-project-2, branch `main`).
+3. Render sees the new commit and rebuilds the website automatically. It is live about 2 to 3 minutes later.
 
 ---
 
@@ -10,13 +24,15 @@ This is **version 0.1**: every service works end to end in a simple form. Each o
 
 | Folder / file | What it is |
 | --- | --- |
-| `app/` (except `app/api/`) | **Front end**: the pages people see (front page, sign-in pages, hub, data-entry steps, report, admin) |
+| `public/mdsspl.html` | **Front end (main app)**: the MDSSPL Service Hub app shown at `/` |
+| `app/` (except `app/api/`) | Front end of the classic hub at `/classic` (sign-in pages, hub, data-entry steps, report, admin) |
 | `app/api/` | **Back end**: the API the pages call to save and load data and to check permissions |
 | `lib/server/` | Back-end helpers: database access (`store.ts`) and who-can-do-what rules (`auth.ts`); the same rules are enforced again inside the database |
 | `modules/<service>/` | **One folder per service**: its steps, questions and calculations, plus its own `README.md` and `CHANGELOG.md` |
 | `lib/factors.ts` | Emission factor table (example values; check them before issuing reports) |
 | `supabase/schema.sql` | **Database**: tables, security rules and the sign-up trigger |
 | `app/globals.css` | Colours and styles from the MDSSPL design system |
+| `app/api/assistant/` and `components/Assistant.tsx` | The AI assistant (back end and chat panel) |
 | `CHANGELOG.md` | History of changes to the whole app |
 
 ### Who can do what
@@ -76,6 +92,27 @@ Tip: while testing, you can switch off email confirmation in Supabase under **Au
 ## Step 4: Use your own domain (www.mdsspl.co.in)
 
 In Render, open your service → **Settings → Custom Domains → Add**, and enter `www.mdsspl.co.in`. Render shows a **CNAME** record. Add that record wherever your domain's DNS is managed (your domain registrar). It can take up to a few hours to start working.
+
+## Step 5 (optional): Switch on the AI assistant
+
+Every signed-in page has an **Ask the assistant** button. It answers questions about the services and, when a project is open, about that project's data and results. It uses Claude through your own Anthropic account, which is billed per use. The default model is small and cheap, and each person is limited to 30 questions an hour.
+
+1. Go to **console.anthropic.com**, sign in, add a payment method, and open **API Keys → Create Key**. Copy the key (it starts with `sk-ant-`). Keep it secret.
+2. In Render, open your service → **Environment → Add environment variable**: `ANTHROPIC_API_KEY` = the key. Click **Save, rebuild and deploy**.
+3. Optional: `ANTHROPIC_MODEL` picks a different Claude model, and `ASSISTANT_MAX_PER_HOUR` changes the hourly limit.
+
+The key stays on the server and is never sent to people's browsers. Without a key, the hub works normally and the assistant says it isn't switched on yet.
+
+## Website settings in Render (Environment)
+
+| Name | Value | Needed for |
+| --- | --- | --- |
+| `SUPABASE_URL` | `https://vvgktutlvmdrujkfrxdj.supabase.co` | Sign-in and saving data in the main app |
+| `SUPABASE_ANON_KEY` | the **publishable** key from Supabase (starts with `sb_publishable_`) | Same. Never put a secret key here; the server refuses to pass one on. |
+| `ANTHROPIC_API_KEY` | your key from console.anthropic.com | AI features (optional). Limited to 60 AI requests per hour per connection; change with `AI_MAX_PER_HOUR`. |
+| `ANTHROPIC_MODEL` / `ANTHROPIC_MODEL_QUICK` | default `claude-sonnet-5-5` / `claude-haiku-5-5` | Optional model choice |
+
+In Supabase, under **Authentication → URL Configuration**, set **Site URL** to `https://www.mdsspl.co.in` so that sign-up and password e-mails link to the website.
 
 ---
 

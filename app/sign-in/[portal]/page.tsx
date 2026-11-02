@@ -78,7 +78,7 @@ export default function SignIn({ params }: { params: { portal: string } }) {
   return (
     <>
       <DemoBanner />
-      <header className="topbar"><div className="topbar-inner"><Link href="/" className="logo">MDSSPL Service Hub</Link></div></header>
+      <header className="topbar"><div className="topbar-inner"><Link href="/classic" className="logo">MDSSPL Service Hub</Link></div></header>
       <main className="page narrow" style={{ maxWidth: 480 }}>
         <div className="card">
           <h1 style={{ fontSize: 26 }}>{mode === 'up' ? 'Register as a client' : portal.title}</h1>
@@ -129,7 +129,7 @@ export default function SignIn({ params }: { params: { portal: string } }) {
 
           {msg && <p className={msg.kind} role="alert" style={{ marginTop: 16 }}>{msg.text}</p>}
         </div>
-        <p className="muted"><Link href="/">← Back to the front page</Link></p>
+        <p className="muted"><Link href="/classic">← Back to the front page</Link></p>
       </main>
     </>
   );

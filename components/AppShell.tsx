@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { getMe, isDemo, signOut } from '@/lib/client';
+import Assistant from './Assistant';
 import { ROLES, type Profile } from '@/lib/types';
 
 const UserCtx = createContext<Profile | null>(null);
@@ -28,7 +29,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     getMe().then((u) => {
-      if (!u) router.replace('/');
+      if (!u) router.replace('/classic');
       setUser(u);
     });
   }, [router]);
@@ -51,7 +52,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
             className="btn"
             onClick={async () => {
               await signOut();
-              router.replace('/');
+              router.replace('/classic');
             }}
           >
             Sign out
@@ -59,6 +60,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
       <main className="page">{children}</main>
+      <Assistant />
     </UserCtx.Provider>
   );
 }
