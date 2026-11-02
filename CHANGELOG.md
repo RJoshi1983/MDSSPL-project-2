@@ -2,6 +2,9 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-02 — version 0.3.2
+- Payment: the "Before you pay" step no longer blocks the client. The two acceptance boxes can be ticked straight away (ticking confirms that document), a line says exactly what is still needed, and the document reader is readable in dark mode. After "Accept and continue to payment" the bank transfer / cheque details and the payment form open.
+
 ## 2026-11-02 — version 0.3.1
 - Registration → prices → confirmation → payment:
   - Prices now appear as soon as the required registration details are filled (name, valid email, consent). Before, they stayed hidden unless the separate "Submit enquiry" button was used.
