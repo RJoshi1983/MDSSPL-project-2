@@ -8075,5 +8075,28 @@ function sbnuse(){if(!APIOK()||!SBN.cfg)return;var c=APIC();c.mode='supabase';c.
 function SBNCARD(){var c=APIC();if(!SBN.cfg)return '';var same=c.mode=='supabase'&&c.url==SBN.cfg.url&&c.sbkey==SBN.cfg.key;return '<div class="card"><h4>Supabase is linked through Netlify</h4><p class="mut">The address and the publishable key are kept in the Netlify settings of this site (SUPABASE_URL and SUPABASE_ANON_KEY), so nobody has to type them.'+(same?' They are in use.':'')+'</p>'+(same?'':'<div class="row" translate="no"><button class="on" onclick="sbnuse()">Use them</button></div>')+'</div>'}
 var SBN0=APIV;APIV=function(){var h=SBN0();if(APIOK()&&APIU.tab=='conn'){if(!SBN.p)SBNCFG().then(function(j){if(j){try{R()}catch(e){}}});h+=SBNCARD()}return h};
 function rst(){delete st.v[cur];delete st.d[cur];delete st.T[cur];save();R()}
+/* ===== MDSSPL change 2026-11-02: registration -> prices -> confirm -> payment ===== */
+/* 1. Prices show as soon as the required registration fields are filled (name, valid email, consent). */
+function EQREQ(c){c=c||ENQD.cur;var m=[];if(!(c.org||'').trim())m.push('Organisation or individual name');if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.email||''))m.push('a valid email');if(!c.ok)m.push('the tick "I agree that MDSSPL may contact me"');return m}
+function RGREQOK(){try{return !!((RG.org||'').trim()&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(RG.em||''))}catch(e){return false}}
+var PRVIS0x=PRVIS;PRVIS=function(){return PRVIS0x()||EQREQ().length==0||RGREQOK()};
+/* 2. "Next" on the registration page records the enquiry, carries its services into the selection and opens the price list. */
+function nqnext(){var c=ENQD.cur,m=EQREQ(c);if(m.length){ENQD.open=true;ENQD.msg='To see the prices, please complete: '+m.join(', ')+'.';R();try{window.scrollTo(0,0)}catch(e){}return}
+ if(!c.id){c.id='q'+Date.now().toString(36);c.at=new Date().toISOString()}
+ c.svcs=ENQS(c).filter(function(id){return S.some(function(s){return s.id==id})&&OFFERED(id)});if(!c.sub)c.sub=new Date().toISOString();
+ var k=ENQD.list.filter(function(x){return x.id==c.id})[0],cp=JSON.parse(JSON.stringify(c));if(k)Object.assign(k,cp);else ENQD.list.push(cp);
+ c.svcs.forEach(function(id){if(CART.indexOf(id)<0)CART.push(id)});saveK();try{enqapply()}catch(e){}ENQD.msg='';saveEQ();
+ SMSG=c.svcs.length?'Your registration is recorded. The services from your enquiry are selected below with their prices. Add or remove services, then go to the order page.':'Your registration is recorded. Tick the services you need: the price and the payable amount appear at once.';go('sv')}
+function EQSTAT(){if(STAFF)return '';var m=EQREQ();return m.length?'<div class="card" style="border-left:4px solid #d97706"><b>Still needed before prices are shown:</b> '+esc(m.join(', '))+'.</div>':'<div class="card" style="border-left:4px solid #059669"><b>Required details are complete.</b> Click <b>Next: see prices and choose services</b>.</div>'}
+var NQV0x=NQV;NQV=function(){var h=NQV0x.apply(this,arguments);if(STAFF)return h;h=h.split('onclick="go(\'sv\')">Next: choose the services').join('onclick="nqnext()">Next: see prices and choose services');var a=h.lastIndexOf('<div class="card"><div class="row" translate="no"><button class="on" onclick="nqnext()');return a>-1?h.slice(0,a)+EQSTAT()+h.slice(a):h+EQSTAT()};
+var ENQGATEV0x=ENQGATEV;ENQGATEV=function(){return ENQGATEV0x().split("go('sv')").join("go('nq')")};
+/* 3. The client confirms the selected services and the amount before the order is placed and the payment page opens. */
+var ORDCF={show:false};
+var ordnew0x=ordnew;ordnew=function(){if(!PRVIS())return go('nq');var er=RGERR();if(er.length)return R();ORDCF.show=true;R();setTimeout(function(){var e=document.getElementById('ordconf');if(e)e.scrollIntoView({block:'center'})},30)};
+function ordconfirm(){ORDCF.show=false;ordnew0x()}
+function ordcancel(){ORDCF.show=false;R()}
+function ORDCFV(){var T=CALC(CART,RG.cy);return '<div id="ordconf" class="card" style="border:3px solid var(--ac)"><h3>Confirm your order</h3><p class="mut">Please check the services and the amount. After you confirm, the order is placed and the payment page opens.</p><div class="tw"><table><tr><th>Service</th><th>Amount</th></tr>'+T.items.map(function(i){return '<tr><td>'+esc(i.disp||i.name)+'</td><td class="n">'+TIP(T,i)+'</td></tr>'}).join('')+'<tr><td>Subtotal</td><td class="n">'+TM(T,'sub')+'</td></tr><tr><td>'+TXLBL(T)+'</td><td class="n">'+TM(T,'gst')+'</td></tr><tr><td><b>Total payable</b></td><td class="n"><b>'+TM(T,'total')+'</b></td></tr></table></div><p class="mut">Client: '+esc(RG.org||'')+' · '+esc(RG.em||'')+'</p><div class="row" translate="no"><button class="on" onclick="ordconfirm()">Confirm and go to payment</button><button onclick="ordcancel()">Not yet, change something</button><button onclick="ordcancel();go(\'sv\')">Change the services</button></div></div>'}
+var RGV0x=RGV;RGV=function(){var h=RGV0x.apply(this,arguments);if(ORDCF.show&&PRVIS()&&CART.length&&!RGERR().length)h+=ORDCFV();else ORDCF.show=false;return h};
+/* ===== end of change ===== */
 R();
 </script></body></html>

@@ -2,6 +2,14 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-02 — version 0.3.1
+- Registration → prices → confirmation → payment:
+  - Prices now appear as soon as the required registration details are filled (name, valid email, consent). Before, they stayed hidden unless the separate "Submit enquiry" button was used.
+  - "Next: see prices and choose services" records the enquiry, carries its services into the selection and opens the price list; if something required is missing, it says exactly what.
+  - Before an order is placed, the client sees a "Confirm your order" box (services, subtotal, tax, total) and must click "Confirm and go to payment"; then the payment page opens.
+  - The "Go to registration" button on the order page now opens the registration page.
+- The same change is made in the Claude artifact, so both stay identical.
+
 ## 2026-11-02 — version 0.3.0
 - The home page is now the full MDSSPL Service Hub app (from the Claude artifact), in `public/mdsspl.html`.
 - Back end for the app: `/.netlify/functions/supabase-config` (Supabase link, public key only) and `/.netlify/functions/ai` (Claude AI with a per-connection hourly limit).
