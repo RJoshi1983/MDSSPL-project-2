@@ -2,6 +2,15 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.5.0
+- 17 new services in 5 new groups (each opens as its own workspace with a dashboard, module tabs, settings, and Report PDF / PowerPoint / Excel / Word):
+  - Regulatory & Compliance: EU CBAM Compliance (the existing CBAM service, moved here), EU CSRD / ESRS Reporting, EU CSDDD Due Diligence, Extended Producer Responsibility (EPR).
+  - Supply Chain & Scope 3: Scope 3 Supplier Engagement, Supply Chain Due Diligence, Supplier CBAM Data Collection.
+  - Social & Governance: Social Impact Assessment (SROI), Diversity, Equity & Inclusion Metrics, Governance Assessment, Health & Safety Performance (LTIFR, TRIFR, ISO 45001).
+  - Biodiversity & Land: Biodiversity Impact Assessment, Land Restoration Planning, TNFD Disclosure.
+  - Analytical Tools: Emission Factor Library, Climate Scenario Analysis, Sustainability Gap Analysis, Materiality Assessment.
+- Prices for the new services are placeholders. Emission factors and CBAM default values are marked "to be confirmed by MDSSPL".
+
 ## 2026-11-03 — version 0.4.3
 - Fix: blank page after accepting the terms. The terms acceptance and the sign-in accounts were saved under the same browser key (mdsAcc), so accepting the terms wiped the account list and the page stopped drawing. Acceptance now has its own key (mdsTerms); existing browsers are repaired automatically on the next visit.
 
