@@ -2,6 +2,16 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.5.2
+- More duplicates merged into the original services (saved data moved, formats unchanged):
+  - Supplier CBAM Data Collection → inside EU CBAM Compliance (questionnaire, verification, default vs actual, data quality, supplier log).
+  - Supply Chain Due Diligence → inside EU CSDDD Due Diligence (supplier risk, human rights, environmental compliance, corrective actions, audits).
+  - Materiality Assessment → inside EU CSRD / ESRS (topics, stakeholder survey, impact and financial scoring, priority matrix).
+- Sample data: every new service and added module has "Load sample data" and "Remove sample data" on its Dashboard.
+- Demo & guides: video demo, audio guide and PDF manual for every new service, built from the sample data; CBAM, ESRS, HSE and CSDDD guides gain steps for the added modules.
+- Manuals: the per-service technical, troubleshooting, end-to-end and code-map manuals now list all 49 services, with the modules (tabs and fields) of each.
+- Database: new Supabase tables service_catalog (all services) and service_records (each record of each service, per signed-in owner, with row-level security). When the Supabase link is on, the app saves service records there too. SQL in supabase/service_tables.sql.
+
 ## 2026-11-03 — version 0.5.1
 - Duplicates merged into the better, original services (their saved data and formats are unchanged):
   - "ESRS (CSRD) Sustainability Statement" is now "EU CSRD / ESRS Reporting" in Regulatory & Compliance, and gains Transition plan, Value chain data and Digital tagging readiness. The separate new CSRD service is removed.
