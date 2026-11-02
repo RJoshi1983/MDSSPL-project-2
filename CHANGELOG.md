@@ -2,6 +2,12 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.4.2
+- Razorpay payment link (razorpay.me/@mdsspl, set by PAY_LINK_URL): while no Razorpay API keys are set, the payment page shows "Pay with Razorpay" for card, UPI or net banking, with the amount to enter (card amount includes the card fee). The client then enters the Razorpay Payment ID with the method "Razorpay link"; MDSSPL checks it in the Razorpay dashboard.
+
+## 2026-11-03 — version 0.4.1
+- UPI payee name (PAY_UPI_NAME) shown on the page and in UPI apps.
+
 ## 2026-11-03 — version 0.4.0
 - Online payments: "Pay online now" on the payment page. The client chooses credit/debit card, UPI or net banking and the provider (Razorpay or Cashfree); the payment is confirmed with the provider on the server (signature / status check) and recorded on the order.
 - Card convenience fee set by PAY_CARD_FEE_PCT (UPI and net banking free). International orders: card only, charged in INR, converted by the client's bank.

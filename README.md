@@ -128,6 +128,7 @@ Everything is set in **Render → mdsspl-service-hub → Environment** (no code 
 | `PAY_CARD_FEE_PCT` | `2` | Convenience fee added to **card** payments only (0 to 5). UPI and net banking are free for the client. |
 | `PAY_UPI_ID` | `8333826183@idfcfirst` | Your UPI ID for free direct UPI payments; a QR code is drawn automatically. |
 | `PAY_UPI_NAME` | `RAGESH JOSHI` | The name the UPI apps show for that UPI ID, so clients see the same name on the page and in their app. |
+| `PAY_LINK_URL` | `https://razorpay.me/@mdsspl` | Used while no provider keys are set: a **Pay with Razorpay** button opens this link, the client pays (card, UPI or net banking), then enters the Razorpay Payment ID (`pay_…`). MDSSPL checks it in the Razorpay dashboard. |
 | `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` | `rzp_test_…` / secret | From Razorpay Dashboard → Account & Settings → API Keys. Test keys (`rzp_test_`) = test mode; live keys = real money. |
 | `CASHFREE_APP_ID` / `CASHFREE_SECRET_KEY` / `CASHFREE_ENV` | … / … / `sandbox` or `production` | From Cashfree Dashboard → Developers → API Keys. |
 
