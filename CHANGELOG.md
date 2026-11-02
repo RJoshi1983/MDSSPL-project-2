@@ -2,6 +2,9 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.4.3
+- Fix: blank page after accepting the terms. The terms acceptance and the sign-in accounts were saved under the same browser key (mdsAcc), so accepting the terms wiped the account list and the page stopped drawing. Acceptance now has its own key (mdsTerms); existing browsers are repaired automatically on the next visit.
+
 ## 2026-11-03 — version 0.4.2
 - Razorpay payment link (razorpay.me/@mdsspl, set by PAY_LINK_URL): while no Razorpay API keys are set, the payment page shows "Pay with Razorpay" for card, UPI or net banking, with the amount to enter (card amount includes the card fee). The client then enters the Razorpay Payment ID with the method "Razorpay link"; MDSSPL checks it in the Razorpay dashboard.
 
