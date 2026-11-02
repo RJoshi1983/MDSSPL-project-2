@@ -2,6 +2,12 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.5.1
+- Duplicates merged into the better, original services (their saved data and formats are unchanged):
+  - "ESRS (CSRD) Sustainability Statement" is now "EU CSRD / ESRS Reporting" in Regulatory & Compliance, and gains Transition plan, Value chain data and Digital tagging readiness. The separate new CSRD service is removed.
+  - "HSE Management" is now "Health & Safety Performance (HSE Management)" in Social & Governance, and gains TRIFR per million hours and an ISO 45001 clause check. The separate new Health & Safety service is removed.
+  - Anything typed into the removed duplicates is moved into the added modules.
+
 ## 2026-11-03 — version 0.5.0
 - 17 new services in 5 new groups (each opens as its own workspace with a dashboard, module tabs, settings, and Report PDF / PowerPoint / Excel / Word):
   - Regulatory & Compliance: EU CBAM Compliance (the existing CBAM service, moved here), EU CSRD / ESRS Reporting, EU CSDDD Due Diligence, Extended Producer Responsibility (EPR).
