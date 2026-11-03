@@ -2,6 +2,10 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.5.7
+- Pamphlets: the figures count themselves (now 49 services in 13 groups), the standard text names the full range (EU CBAM, CSRD, CSDDD, EPR, supply chain, social and governance, biodiversity, analytics), and saved pamphlets with the old figures are corrected automatically. New services appear in the pamphlet service list as soon as they are added.
+- Manuals: new manual "Services, scope and scope for improvement" (users) and a staff version: every service by group with its scope, what the client provides and receives, standards, modules, scope for improvement and related services, plus what MDSSPL is still completing on the platform. It rebuilds itself when services change.
+
 ## 2026-11-03 — version 0.5.6
 - Staff console → Letterheads (under Content and reports): the official letterhead designs (Design 1 Brand Strip, Brand Strip for the Jubilee Hills office, Design 2 Navy Band, Design 3 Premium Clean, Classic template) with PDF and Word downloads; write a letter and print it on the chosen letterhead (Save as PDF), with automatic reference numbers (MDSSPL/001/2026-27) and a letter register. Files in public/letterheads.
 

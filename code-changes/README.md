@@ -25,7 +25,8 @@ Original core fingerprint (SHA-256): `33f1a4265ce9898aa20e29ad57d9fd28e4bbf733c6
 | 7 | `07-v0.5.3.js` | v0.5.3 | 2026-11-03 | admin-only control and architecture pages, code change register, referral partner page, simpler registration | `5695c2877978be58…` |
 | 8 | `08-v0.5.4.js` | v0.5.4 | 2026-11-03 | administrator e-mail addresses (primary and secondary) with the administrator passphrase | `43ccdbdcdffff09d…` |
 | 9 | `09-v0.5.5.js` | v0.5.5 | 2026-11-03 | licence public key built into the page (front end) and the server (back end); licence checking on | `8867cd457b2f3f5f…` |
-| 10 | `10-v0.5.6.js` | v0.5.6 | 2026-11-03 | letterheads in the Staff console (designs, Word and PDF files, write and print a letter, letter register) | `c59d8e50aff46e8b…` |
+| 10 | `10-v0.5.6.js` | v0.5.6 | 2026-11-03 | letterheads in the Staff console (designs, Word and PDF files, write and print a letter, letter register) | `9afaf9b51e992bb9…` |
+| 11 | `11-v0.5.7.js` | v0.5.7 | 2026-11-03 | pamphlets and manuals cover every service, its scope and the scope for improvement | `57937524495e90df…` |
 
 Back-end files for v0.5.5: `lib/server/licence.ts`, `app/api/licence/verify/route.ts`, `app/api/licence/public-key/route.ts`.
 
