@@ -23,6 +23,7 @@ Original core fingerprint (SHA-256): `cbf5c69b0dd811fff32fa9e2391106230488db68aa
 | 5 | `05-v0.5.1.js` | v0.5.1 | 2026-11-03 | keep the original ESRS and HSE services (their data formats unchanged) in place of the new duplicates, and add the missing modules to them | `356001b83ae5b397…` |
 | 6 | `06-v0.5.2.js` | v0.5.2 | 2026-11-03 | remove remaining duplicates (Supplier CBAM into CBAM, Supply Chain Due Diligence into CSDDD, Materiality into ESRS), sample data for every new service, demo guides, manuals rebuilt, online database tables | `f7e9c506f01ff6fe…` |
 | 7 | `07-v0.5.3.js` | v0.5.3 | 2026-11-03 | admin-only control and architecture pages, code change register, referral partner page, simpler registration | `f7d2379ae7ca45c1…` |
+| 8 | `08-v0.5.4.js` | v0.5.4 | 2026-11-03 | administrator e-mail addresses (primary and secondary) with the administrator passphrase | `43ccdbdcdffff09d…` |
 
 ## Rules
 

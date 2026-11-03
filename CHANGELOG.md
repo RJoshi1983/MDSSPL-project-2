@@ -2,6 +2,9 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.5.4
+- Administrator e-mail addresses: the administrator passphrase card now holds the primary e-mail (rageshjoshi@mdsspl.com) and a secondary recovery e-mail (madhumathidattasustainability@gmail.com), and the recovery code can be e-mailed to both.
+
 ## 2026-11-03 — version 0.5.3
 - Admin only: Controls and access, Architecture, Source code, Integrations, Security centre, Licence keys and Assignments (the assignment hierarchy) are hidden from staff and open only to the administrator. A warning shows while no administrator passphrase is set.
 - Core code protection: Staff console → Source code shows "Core code and modification files": the original core fingerprint (SHA-256), a warning if the core no longer matches the original, and every update as its own modification file (version, date, fingerprint, download). The same files are in the new code-changes folder.

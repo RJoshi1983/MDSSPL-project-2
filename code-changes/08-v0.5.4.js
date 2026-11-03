@@ -1,0 +1,11 @@
+/* MDSSPL code modification file 8. Version 0.5.4, 2026-11-03.
+   SHA-256 of the block: 43ccdbdcdffff09d2939fab75045f45ffce4053fb87dafc01b9dbacef1ac5a22
+   CONFIDENTIAL. (c) MDSSPL. All rights reserved. */
+/* ===== MDSSPL change 2026-11-03 v0.5.4: administrator e-mail addresses (primary and secondary) with the administrator passphrase ===== */
+(function(){
+var DEF1='rageshjoshi@mdsspl.com',DEF2='madhumathidattasustainability@gmail.com',ok=function(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)};
+window.ADMEM=function(){var A=ADC();return {p:A.em1||DEF1,s:A.em2||DEF2}};
+var ADV0e=ADV;ADV=function(){var h=ADV0e.apply(this,arguments),A=ADC(),E=ADMEM(),f='<div><label>Administrator e-mail (primary)</label><input id="adem1" type="email" value="'+esc(E.p)+'"></div><div><label>Secondary e-mail (for recovery)</label><input id="adem2" type="email" value="'+esc(E.s)+'"></div>';h=h.replace('<div><label>New passphrase (at least 10 characters)</label>',f+'<div><label>New passphrase (at least 10 characters)</label>');var line='<p class="mut">Administrator: <b>'+esc(E.p)+'</b> · secondary: <b>'+esc(E.s)+'</b></p>';h=h.replace('</h3>','</h3>'+line);if(ADU.rec){var mt='mailto:'+encodeURIComponent(E.p)+'?cc='+encodeURIComponent(E.s)+'&subject='+encodeURIComponent('MDSSPL administrator recovery code')+'&body='+encodeURIComponent('MDSSPL Service Hub administrator recovery code: '+ADU.rec+'\nKeep this e-mail private. It is the only way to reset the administrator passphrase on this device.');h=h.replace('<button onclick="ADU.rec=\'\';R()" translate="no">I have saved it</button>','<a class="btn" href="'+mt+'">E-mail it to '+esc(E.p)+' and '+esc(E.s)+'</a> <button onclick="ADU.rec=\'\';R()" translate="no">I have saved it</button>')}return h};
+var adset0=adset;adset=function(){var A=ADC(),g=function(i){var e=document.getElementById(i);return e?e.value.trim().toLowerCase():''},e1=g('adem1'),e2=g('adem2');if(document.getElementById('adem1')){if(!ok(e1)){ADU.msg='Enter a valid administrator e-mail.';return R()}if(e2&&!ok(e2)){ADU.msg='Enter a valid secondary e-mail, or leave it empty.';return R()}if(A.pwh&&!ISADM()){ADU.msg='Only the administrator can change the administrator details.';return R()}A.em1=e1;A.em2=e2;try{audit('admin-emails-set',e1,e2)}catch(x){}}return adset0.apply(this,arguments)};
+})();
+/* ===== end of change ===== */
