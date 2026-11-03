@@ -2,6 +2,12 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.5.3
+- Admin only: Controls and access, Architecture, Source code, Integrations, Security centre, Licence keys and Assignments (the assignment hierarchy) are hidden from staff and open only to the administrator. A warning shows while no administrator passphrase is set.
+- Core code protection: Staff console → Source code shows "Core code and modification files": the original core fingerprint (SHA-256), a warning if the core no longer matches the original, and every update as its own modification file (version, date, fingerprint, download). The same files are in the new code-changes folder.
+- Referral partners: new sign-in "Other → Referral partner". With their code and the email or phone given at onboarding, a partner sees only their own referral code, referral link and onboarding details. Staff can publish partners to the website (Referrals tab). Database: referrers table with two safe checks (supabase/referrers.sql).
+- Registration: shorter screen ("Register in two minutes"): name, email, phone, country, number of units, referral code and consent. Everything else (contact, sector, timing, reasons, standards, scope of each service, news consent, notes) is under "More details (optional)". Same data and rules as before. A referral link (?ref=CODE) fills the code in and the code is checked.
+
 ## 2026-11-03 — version 0.5.2
 - More duplicates merged into the original services (saved data moved, formats unchanged):
   - Supplier CBAM Data Collection → inside EU CBAM Compliance (questionnaire, verification, default vs actual, data quality, supplier log).
