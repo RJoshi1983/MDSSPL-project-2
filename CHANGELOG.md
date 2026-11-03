@@ -2,6 +2,12 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.5.6
+- Staff console → Letterheads (under Content and reports): the official letterhead designs (Design 1 Brand Strip, Brand Strip for the Jubilee Hills office, Design 2 Navy Band, Design 3 Premium Clean, Classic template) with PDF and Word downloads; write a letter and print it on the chosen letterhead (Save as PDF), with automatic reference numbers (MDSSPL/001/2026-27) and a letter register. Files in public/letterheads.
+
+## 2026-11-03 — version 0.5.5
+- Licence keys: a new MDSSPL key pair. The public key is built into the website (front end) and the server (back end, LICENCE_PUBLIC_KEY in Render, /api/licence/verify and /api/licence/public-key), so licence checking is on. A public key saved on one device no longer overrides it (the earlier key was exposed and is no longer trusted). The private key is kept offline in Documents\MDSSPL-keys on the administrator's computer, not in GitHub.
+
 ## 2026-11-03 — version 0.5.4
 - Administrator e-mail addresses: the administrator passphrase card now holds the primary e-mail (rageshjoshi@mdsspl.com) and a secondary recovery e-mail (madhumathidattasustainability@gmail.com), and the recovery code can be e-mailed to both.
 

@@ -109,6 +109,7 @@ The key stays on the server and is never sent to people's browsers. Without a ke
 | --- | --- | --- |
 | `SUPABASE_URL` | `https://vvgktutlvmdrujkfrxdj.supabase.co` | Sign-in and saving data in the main app |
 | `SUPABASE_ANON_KEY` | the **publishable** key from Supabase (starts with `sb_publishable_`) | Same. Never put a secret key here; the server refuses to pass one on. |
+| `LICENCE_PUBLIC_KEY` | the MDSSPL licence **public** key (JSON) | Checks activation codes and tokens on the server (`/api/licence/verify`). Never put the private key here. |
 | `ANTHROPIC_API_KEY` | your key from console.anthropic.com | AI features (optional). Limited to 60 AI requests per hour per connection; change with `AI_MAX_PER_HOUR`. |
 | `ANTHROPIC_MODEL` / `ANTHROPIC_MODEL_QUICK` | default `claude-sonnet-5-5` / `claude-haiku-5-5` | Optional model choice |
 
