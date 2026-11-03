@@ -1,5 +1,5 @@
 /* MDSSPL code modification file 6. Version 0.5.2, 2026-11-03.
-   SHA-256 of the block: f7e9c506f01ff6fee8c1596a20bee8e4ef768071448a795db38cb64f83d129c5
+   SHA-256 of the block: 4a3395ac4ac81958e31f41f211333de17510e23f81656c519f374138fcf5085a
    CONFIDENTIAL. (c) MDSSPL. All rights reserved. */
 /* ===== MDSSPL change 2026-11-03 v0.5.2: remove remaining duplicates (Supplier CBAM into CBAM, Supply Chain Due Diligence into CSDDD, Materiality into ESRS), sample data for every new service, demo guides, manuals rebuilt, online database tables ===== */
 (function(){
@@ -64,7 +64,7 @@ Object.keys(REB).forEach(function(k){var m=MND[k];if(!m||!m.secs)return;var p=PF
 
 /* 7. Online database: when the Supabase link is on and signed in, each service's records are also saved in the service_records table */
 var SRH={},SRT=null,PAR={esrsx:'esrs',hsex:'hse',cbamx:'cbam'};
-window.SRPUSH=function(){try{var c=APIC();if(c.mode!='supabase'||!c.on||!APITOK()||!c.url)return;var D=PTD();Object.keys(PGE).forEach(function(id){if(!D[id])return;var j=JSON.stringify(D[id].rows||{});if(SRH[id]===j)return;var svc=PAR[id]||id;if(!sv(svc))return;var rows=[];Object.keys(D[id].rows||{}).forEach(function(e){(D[id].rows[e]||[]).forEach(function(r){rows.push({service:svc,module:(PAR[id]?id+'.':'')+e,record_id:String(r.id),data:r,sample:!!r.smp})})});var pre=PAR[id]?'&module=like.'+encodeURIComponent(id+'.*'):(Object.values(PAR).indexOf(id)>-1?'&module=not.like.'+encodeURIComponent('*.*'):'');APIF('/service_records?service=eq.'+encodeURIComponent(svc)+pre,{method:'DELETE'}).then(function(r){if(!r.ok)return;if(!rows.length){SRH[id]=j;return}return APIF('/service_records',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(rows)}).then(function(r2){if(r2.ok)SRH[id]=j})})})}catch(e){}};
+window.SRPUSH=function(){try{var c=APIC();if(c.mode!='supabase'||!c.on||!APITOK()||!c.url)return;var D=PTD();Object.keys(PGE).forEach(function(id){if(!D[id])return;var j=JSON.stringify(D[id].rows||{});if(SRH[id]===j)return;var svc=PAR[id]||id;if(!sv(svc))return;var rows=[];Object.keys(D[id].rows||{}).forEach(function(e){(D[id].rows[e]||[]).forEach(function(r){rows.push({service:svc,module:(PAR[id]?id+'.':'')+e,record_id:String(r.id),data:(typeof PIDFOR=='function'&&PIDFOR(svc))?Object.assign({},r,{_uin:PIDFOR(svc)}):r,sample:!!r.smp})})});var pre=PAR[id]?'&module=like.'+encodeURIComponent(id+'.*'):(Object.values(PAR).indexOf(id)>-1?'&module=not.like.'+encodeURIComponent('*.*'):'');APIF('/service_records?service=eq.'+encodeURIComponent(svc)+pre,{method:'DELETE'}).then(function(r){if(!r.ok)return;if(!rows.length){SRH[id]=j;return}return APIF('/service_records',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(rows)}).then(function(r2){if(r2.ok)SRH[id]=j})})})}catch(e){}};
 var PTSAVE0=PTSAVE;PTSAVE=function(){PTSAVE0.apply(this,arguments);clearTimeout(SRT);SRT=setTimeout(SRPUSH,2500)};
 })();
 /* ===== end of change ===== */

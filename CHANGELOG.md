@@ -2,6 +2,12 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-03 — version 0.5.9
+- The project number (UIN) is linked to everything: the payment record, the tax invoice, invoices and receipts (PDF), the UPI payment note and QR code, the Razorpay link note and the Razorpay order notes (back end: app/api/pay/create), referral commissions, CSV exports (each order number is followed by its UIN), assignments (Staff console → Assignments shows the project's UIN and project lists show it next to each project), and the online data records (service_records rows carry the UIN).
+
+## 2026-11-03 — version 0.5.8
+- Client number for every client (MDS-XXXXXX, worked out from the registered e-mail, the same on every device) and a unique project number for every project onboarded (Option B): MDS-client-groups+count-kind-DDMMYYYY-running, for example MDS-YKG1QY-CS2-V-05042027-01. Group letters: C carbon, E energy/water/waste, S sustainability reporting, R regulatory, U supply chain, G social & governance, H HSE, B biodiversity, Y analytical tools, Q certification, F finance, P people, M sales & marketing, T technology & legal. Kind: V verification, A advisory, none for consultancy. Shown next to every order number, on My orders and in the Staff console (Orders explains the format). Existing orders get their numbers automatically.
+
 ## 2026-11-03 — version 0.5.7
 - Pamphlets: the figures count themselves (now 49 services in 13 groups), the standard text names the full range (EU CBAM, CSRD, CSDDD, EPR, supply chain, social and governance, biodiversity, analytics), and saved pamphlets with the old figures are corrected automatically. New services appear in the pamphlet service list as soon as they are added.
 - Manuals: new manual "Services, scope and scope for improvement" (users) and a staff version: every service by group with its scope, what the client provides and receives, standards, modules, scope for improvement and related services, plus what MDSSPL is still completing on the platform. It rebuilds itself when services change.

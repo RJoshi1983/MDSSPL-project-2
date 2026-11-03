@@ -14,7 +14,7 @@ function allow(ip: string) {
 }
 
 // POST /api/pay/create — start a payment with the provider the client chose.
-// { gateway, method, orderNo, amount, name, email, phone }
+// { gateway, method, orderNo, uin (project number), amount, name, email, phone }
 export async function POST(req: NextRequest) {
   try {
     const ip = (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || 'unknown';
@@ -25,12 +25,13 @@ export async function POST(req: NextRequest) {
     const method = (['card', 'upi', 'netbanking'].includes(b.method) ? b.method : 'card') as Method;
     const orderNo = String(b.orderNo || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 40);
     if (orderNo.length < 3) return Response.json({ error: 'The order number is missing.' }, { status: 400 });
+    const uin = String(b.uin || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 60);
     const amount = checkAmount(b.amount);
     const fee = feeFor(method, amount);
     const total = r2(amount + fee);
     const cust = { name: String(b.name || '').slice(0, 100), email: String(b.email || '').slice(0, 120), phone: String(b.phone || '').slice(0, 20) };
     if (gateway === 'razorpay') {
-      const r = await razorpayCreate(total, orderNo, { order: orderNo, method, invoice: String(amount), fee: String(fee) });
+      const r = await razorpayCreate(total, orderNo, { order: orderNo, uin, method, invoice: String(amount), fee: String(fee) });
       return Response.json({ gateway, mode: gatewayMode(gateway), amount, fee, total, ...r });
     }
     const c = await cashfreeCreate(total, orderNo, method, cust);

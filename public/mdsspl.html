@@ -8407,7 +8407,7 @@ Object.keys(REB).forEach(function(k){var m=MND[k];if(!m||!m.secs)return;var p=PF
 
 /* 7. Online database: when the Supabase link is on and signed in, each service's records are also saved in the service_records table */
 var SRH={},SRT=null,PAR={esrsx:'esrs',hsex:'hse',cbamx:'cbam'};
-window.SRPUSH=function(){try{var c=APIC();if(c.mode!='supabase'||!c.on||!APITOK()||!c.url)return;var D=PTD();Object.keys(PGE).forEach(function(id){if(!D[id])return;var j=JSON.stringify(D[id].rows||{});if(SRH[id]===j)return;var svc=PAR[id]||id;if(!sv(svc))return;var rows=[];Object.keys(D[id].rows||{}).forEach(function(e){(D[id].rows[e]||[]).forEach(function(r){rows.push({service:svc,module:(PAR[id]?id+'.':'')+e,record_id:String(r.id),data:r,sample:!!r.smp})})});var pre=PAR[id]?'&module=like.'+encodeURIComponent(id+'.*'):(Object.values(PAR).indexOf(id)>-1?'&module=not.like.'+encodeURIComponent('*.*'):'');APIF('/service_records?service=eq.'+encodeURIComponent(svc)+pre,{method:'DELETE'}).then(function(r){if(!r.ok)return;if(!rows.length){SRH[id]=j;return}return APIF('/service_records',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(rows)}).then(function(r2){if(r2.ok)SRH[id]=j})})})}catch(e){}};
+window.SRPUSH=function(){try{var c=APIC();if(c.mode!='supabase'||!c.on||!APITOK()||!c.url)return;var D=PTD();Object.keys(PGE).forEach(function(id){if(!D[id])return;var j=JSON.stringify(D[id].rows||{});if(SRH[id]===j)return;var svc=PAR[id]||id;if(!sv(svc))return;var rows=[];Object.keys(D[id].rows||{}).forEach(function(e){(D[id].rows[e]||[]).forEach(function(r){rows.push({service:svc,module:(PAR[id]?id+'.':'')+e,record_id:String(r.id),data:(typeof PIDFOR=='function'&&PIDFOR(svc))?Object.assign({},r,{_uin:PIDFOR(svc)}):r,sample:!!r.smp})})});var pre=PAR[id]?'&module=like.'+encodeURIComponent(id+'.*'):(Object.values(PAR).indexOf(id)>-1?'&module=not.like.'+encodeURIComponent('*.*'):'');APIF('/service_records?service=eq.'+encodeURIComponent(svc)+pre,{method:'DELETE'}).then(function(r){if(!r.ok)return;if(!rows.length){SRH[id]=j;return}return APIF('/service_records',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(rows)}).then(function(r2){if(r2.ok)SRH[id]=j})})})}catch(e){}};
 var PTSAVE0=PTSAVE;PTSAVE=function(){PTSAVE0.apply(this,arguments);clearTimeout(SRT);SRT=setTimeout(SRPUSH,2500)};
 })();
 /* ===== end of change ===== */
@@ -8530,6 +8530,60 @@ var build=function(){var secs=[{id:'s0',t:'1. About this manual',b:['This manual
 MND.scp={t:'Services, scope and scope for improvement',aud:'user',kind:'tech',get secs(){return build()}};
 MND.scs={t:'Services, scope and scope for improvement, for staff',aud:'staff',kind:'tech',get secs(){var s=build();s.push({id:'st',t:'For staff: how to use this manual',b:['- Use the scope list of each service in the proposal and the engagement letter.','- Use the scope for improvement in the closing meeting and in the next proposal.','- Record each improvement agreed with the client in Tasks and chat.']});return s}};
 var MNV0s=MNV;MNV=function(){var h=MNV0s.apply(this,arguments),card=function(id){return '<div class="card"><h4>'+esc(MND[id].t)+'</h4><p class="mut">Covers all '+NS()+' services · updated with every new service</p><div class="row" translate="no"><button class="on" onclick="mnview(\''+id+'\')">Read</button><button onclick="mnpdf(\''+id+'\')">Download PDF</button></div></div>'};var a="mnpdf('tbl')\">Download PDF</button></div></div>",b="mnpdf('tbs')\">Download PDF</button></div></div>";if(h.indexOf(a)>-1&&h.indexOf("mnview('scp')")<0)h=h.replace(a,a+card('scp'));if(h.indexOf(b)>-1&&h.indexOf("mnview('scs')")<0)h=h.replace(b,b+card('scs'));return h};
+})();
+/* ===== end of change ===== */
+/* ===== MDSSPL change 2026-11-03 v0.5.8: client numbers and project numbers (client code from e-mail, service groups, kind of work, date, running number) ===== */
+(function(){
+/* group letters (Option B) */
+window.PIDG={env:'C',res:'E',sus:'S',reg:'R',scm:'U',soc:'G',hse:'H',bio:'B',ana:'Y',cert:'Q',fin:'F',ppl:'P',gtm:'M',tech:'T'};
+var AL='0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+var fnv=function(s,seed){var h=seed>>>0;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h>>>0};
+/* client code: 6 characters worked out from the registered e-mail; the same on every device */
+window.CLID=function(em){em=String(em||'').trim().toLowerCase();if(!em)return '';var a=fnv(em,2166136261),b=fnv(em.split('').reverse().join(''),3735928559),n=(a^(b<<7))>>>0,o='';for(var i=0;i<5;i++){o+=AL[n%32];n=Math.floor(n/32)}o+=AL[(b>>>3)%32];return o};
+window.CLNO=function(em){var c=CLID(em);return c?'MDS-'+c:''};
+var grpOf=function(id){var g=SVGRP.filter(function(x){return x[3].indexOf(id)>-1})[0];return g?g[0]:''};
+window.PIDSVC=function(items){var L={};(items||[]).forEach(function(i){var l=PIDG[grpOf(i.svc)]||'X';L[l]=1});return Object.keys(L).sort().join('')+(items||[]).length};
+window.PIDKIND=function(items){var k={};(items||[]).forEach(function(i){if(i.role=='ver')k.V=1;else if(i.role=='adv')k.A=1});return Object.keys(k).sort().join('')};
+var ddmmyyyy=function(iso){var d=iso?new Date(iso):new Date();return ('0'+d.getDate()).slice(-2)+('0'+(d.getMonth()+1)).slice(-2)+d.getFullYear()};
+window.PIDMAKE=function(o){var C=ORC(o),cl=CLID(C.em),dt=ddmmyyyy(o.created),kd=PIDKIND(o.items),stem='MDS-'+cl+'-'+PIDSVC(o.items)+(kd?'-'+kd:'')+'-'+dt,same=ORD.list.filter(function(x){return x!==o&&x.pid&&x.pid.indexOf('MDS-'+cl+'-')==0&&x.pid.slice(-11,-3)==dt}).length;return stem+'-'+('0'+(same+1)).slice(-2)};
+window.PIDFILL=function(){var ch=false;try{PJR.clients.forEach(function(c){if(c.em&&!c.cid){c.cid=CLNO(c.em);ch=true}});if(ch)savePJ()}catch(e){}var cho=false;ORD.list.slice().sort(function(a,b){return String(a.created).localeCompare(String(b.created))}).forEach(function(o){if(!o.pid&&ORC(o).em){o.pid=PIDMAKE(o);cho=true}});if(cho)saveO()};
+var ordnew0p=ordnew;ordnew=function(){var r=ordnew0p.apply(this,arguments);try{PIDFILL()}catch(e){}return r};
+/* invoices and receipts carry the project number next to the order number */
+var INVPDF0p=INVPDF;INVPDF=function(o,kind){if(!o||!o.pid)return INVPDF0p.apply(this,arguments);var n=o.no;o.no=n+' | Project '+o.pid;try{return INVPDF0p.apply(this,arguments)}finally{o.no=n}};
+/* show the project number wherever an order number is shown, and the client number on My orders */
+var NORE=/MDS-ORD-\d{4}-\d{4}/;
+window.PIDDOM=function(){var m=document.getElementById('m');if(!m||!ORD||!ORD.list.length)return;var map={};ORD.list.forEach(function(o){if(o.pid)map[o.no]=o.pid});var w=document.createTreeWalker(m,NodeFilter.SHOW_TEXT,null),L=[],t;while((t=w.nextNode())){if(NORE.test(t.nodeValue)&&!(t.parentNode&&t.parentNode.closest&&t.parentNode.closest('textarea,input,select,option,.pidx,script,style')))L.push(t)}L.forEach(function(t){var x=t.nodeValue.match(NORE)[0],pid=map[x],nx=t.parentNode&&t.parentNode.querySelector&&t.parentNode.querySelector('.pidx');if(!pid||nx)return;var sp=document.createElement('span');sp.className='pidx mut';sp.setAttribute('translate','no');sp.style.cssText='font-size:12px;margin-left:6px;white-space:nowrap';sp.textContent='Project '+pid;t.parentNode.insertBefore(sp,t.nextSibling)});
+ if(cur=='od'&&!document.getElementById('cidbox')){var em=(typeof RG!='undefined'&&RG.em)||'';if(!em){var o=ORD.list[ORD.list.length-1];if(o)em=ORC(o).em}if(em){var c=document.createElement('div');c.className='card';c.id='cidbox';c.innerHTML='<p style="margin:0">Your client number: <b translate="no">'+esc(CLNO(em))+'</b> <span class="mut" style="font-size:12px">· Each project number shows the client number, the service groups and number of services, the kind of work (V verification, A advisory), the date and a running number.</span></p>';var f=m.querySelector('.card');if(f&&f.nextSibling)m.insertBefore(c,f.nextSibling);else m.appendChild(c)}}};
+var Rp=R;R=function(){var r=Rp.apply(this,arguments);try{PIDDOM()}catch(e){}return r};
+/* staff: how the numbers are made */
+window.PIDHELP=function(){return '<div class="card"><h4>Client and project numbers</h4><p class="mut">Client number <b>MDS-XXXXXX</b>: worked out from the registered e-mail, the same on every device. Project number <b>MDS-client-groups+count-kind-DDMMYYYY-running</b>, for example <span translate="no">MDS-7KQ2MA-CS2-V-03112026-01</span>.</p><p class="mut" style="font-size:12px">Group letters: '+Object.keys(PIDG).map(function(k){return PIDG[k]+' '+(SECSHORT[k]||k)}).join(' · ')+'. Kind: V verification, A advisory, none for consultancy.</p></div>'};
+var STV0pid=STV;STV=function(){var h=STV0pid.apply(this,arguments);if(STAFF&&ST.tab=='ord')h+=PIDHELP();return h};
+try{PIDFILL()}catch(e){}
+})();
+/* ===== end of change ===== */
+/* ===== MDSSPL change 2026-11-03 v0.5.9: the project number (UIN) linked to payments, invoices, commissions, exports, assignments and data records ===== */
+(function(){
+var byNo=function(no){return ORD.list.filter(function(o){return o.no==no})[0]||null};
+window.UINOF=function(no){var o=byNo(no);return o&&o.pid||''};
+/* the latest project of the signed-in or registering client that includes a service */
+window.PIDFOR=function(svc){var em=String((typeof RG!='undefined'&&RG.em)||'').toLowerCase(),L=ORD.list.filter(function(o){return o.pid&&o.items.some(function(i){return i.svc==svc})&&(!em||String(ORC(o).em||'').toLowerCase()==em)});return L.length?L[L.length-1].pid:''};
+/* link stored records: payments, projects (assignments), referral commissions */
+window.UINLINK=function(){var ch=false;ORD.list.forEach(function(o){if(!o.pid)return;if(o.pay&&o.pay.uin!=o.pid){o.pay.uin=o.pid;ch=true}if(o.inv&&o.inv.uin!=o.pid){o.inv.uin=o.pid;ch=true}if(o.prj){var p=PJR.projects.filter(function(x){return x.id==o.prj})[0];if(p){p.uins=p.uins||[];if(p.uins.indexOf(o.pid)<0){p.uins.push(o.pid);p.uin=p.uins[0];ch=true}}}});if(ch){saveO();try{savePJ()}catch(e){}}try{var D=RFXD(),c2=false;D.acc.forEach(function(a){var u=UINOF(a.ord);if(u&&a.uin!=u){a.uin=u;c2=true}});if(c2)RFXSAVE()}catch(e){}};
+var PIDFILL0=PIDFILL;PIDFILL=function(){PIDFILL0.apply(this,arguments);UINLINK()};
+/* payments: the UPI note and the Razorpay note carry the project number */
+var PAYOPT0u=PAYOPT;PAYOPT=function(o){var h=PAYOPT0u.apply(this,arguments);if(o&&o.pid){h=h.split('tn='+encodeURIComponent(o.no)).join('tn='+encodeURIComponent(o.pid));h=h.replace('Quote <b>'+esc(o.no)+'</b> as the reference or remark.','Quote <b>'+esc(o.no)+'</b> (project <b translate="no">'+esc(o.pid)+'</b>) as the reference or remark.')}return h};
+var RZPME0u=RZPME;RZPME=function(o){var h=RZPME0u.apply(this,arguments);return o&&o.pid?h.replace('<b translate="no">'+esc(o.no)+'</b> in the note','<b translate="no">'+esc(o.pid)+'</b> in the note'):h};
+/* online card and UPI payments: the project number goes to the payment provider as a note */
+var F0=window.fetch;window.fetch=function(u,opt){try{if(typeof u=='string'&&u.indexOf('/api/pay/create')>-1&&opt&&opt.body){var b=JSON.parse(opt.body);if(b.orderNo&&!b.uin){b.uin=UINOF(b.orderNo);opt=Object.assign({},opt,{body:JSON.stringify(b)})}}}catch(e){}return F0.apply(this,[u,opt])};
+var paysub0u=paysub;paysub=function(id){var r=paysub0u.apply(this,arguments);try{UINLINK()}catch(e){}return r};
+/* exports (CSV): every order number is followed by its project number */
+var NOR=/MDS-ORD-\d{4}-\d{4}/g;
+var gcsv0u=gcsvdl;gcsvdl=function(rows,fn){try{rows=rows.map(function(r){return (r||[]).map(function(c){return typeof c=='string'?c.replace(NOR,function(n){var u=UINOF(n);return u?n+' / '+u:n}):c})})}catch(e){}return gcsv0u.call(this,rows,fn)};
+/* assignments: show the project number of the project being staffed */
+var ASGV0u=ASGV;ASGV=function(){var h=ASGV0u.apply(this,arguments),p=null;try{p=ASGP()}catch(e){}if(p&&p.uins&&p.uins.length)h=h.replace('</h3>','</h3><p><b>Project number:</b> <span translate="no">'+p.uins.map(esc).join(', ')+'</span></p>');return h};
+/* page: project numbers next to projects in every project list */
+var PIDDOM0u=PIDDOM;PIDDOM=function(){PIDDOM0u.apply(this,arguments);var m=document.getElementById('m');if(!m)return;[].slice.call(m.querySelectorAll('option')).forEach(function(op){var p=PJR.projects.filter(function(x){return x.id==op.value})[0];if(p&&p.uin&&op.textContent.indexOf(p.uin)<0)op.textContent+=' · '+p.uin})};
+try{UINLINK()}catch(e){}
 })();
 /* ===== end of change ===== */
 R();

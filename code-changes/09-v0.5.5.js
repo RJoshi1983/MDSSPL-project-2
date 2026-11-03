@@ -1,4 +1,4 @@
-/* MDSSPL code modification file 9. Version 0.5.5, 2026-11-03.
+/* MDSSPL code modification file 9. Version 0.5.5, 2026-11-03. Back end: lib/server/licence.ts, app/api/licence/.
    SHA-256 of the block: 8867cd457b2f3f5fe20779863f3abc08cfcc4ff0eddda72a6319c3b4ea88526d
    CONFIDENTIAL. (c) MDSSPL. All rights reserved. */
 /* ===== MDSSPL change 2026-11-03 v0.5.5: licence public key built into the page (front end) and the server (back end); licence checking on ===== */
