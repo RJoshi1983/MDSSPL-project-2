@@ -2,6 +2,9 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-05 — version 0.6.1
+- Staff console → Content and reports → **Visiting cards** (staff and administrator; also linked from Letterheads): 38 designs (Professional series P1–P8 and 30 creative designs A–AD) with the logo and company details from the letterhead; each person enters name, designation, phone, e-mail and staff ID; a website QR code and a save-contact (vCard) QR code are made from the details, and design F has a Code 128 staff ID barcode. Print A4 sheets of 10 fronts or 10 backs (89 × 51 mm, cut marks) or one card, or save as PDF for the print shop.
+
 ## 2026-11-05 — version 0.6.0
 - Staff console → Content and reports → Assurance forms (staff and administrator; also linked from Letterheads):
   - Library of the controlled forms Rev 1.0 (05 Nov 2026) for 24 assurance services: R0001 Opening meeting agenda and MOM, R0002 Plan, R0003 Finding report, R0004 Closing meeting, R0005 Statement, as fillable PDF and Word, plus master list MDSSPL-DOC-L0001. Files in public/assurance.
