@@ -2,6 +2,11 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-05 — version 0.6.0
+- Staff console → Content and reports → Assurance forms (staff and administrator; also linked from Letterheads):
+  - Library of the controlled forms Rev 1.0 (05 Nov 2026) for 24 assurance services: R0001 Opening meeting agenda and MOM, R0002 Plan, R0003 Finding report, R0004 Closing meeting, R0005 Statement, as fillable PDF and Word, plus master list MDSSPL-DOC-L0001. Files in public/assurance.
+  - Document generator for every service (49): choose the project (UIN) and service, fill one engagement record (client, scope, period, criteria, level, materiality, team from Assignments, opening and closing meeting attendance, findings, conclusion) and print on the letterhead: F0001 Enquiry form, R0001 Opening meeting agenda, minutes and attendance, R0002 Plan, R0003 Finding report, R0006 Corrective action plan, R0004 Closing meeting record and attendance, R0007 Verification report, R0005 Statement (titles per service from the master list). Numbering MDSSPL-<code>-<form>, reference <UIN>/<code>/<form>, and a document register.
+
 ## 2026-11-03 — version 0.5.9
 - The project number (UIN) is linked to everything: the payment record, the tax invoice, invoices and receipts (PDF), the UPI payment note and QR code, the Razorpay link note and the Razorpay order notes (back end: app/api/pay/create), referral commissions, CSV exports (each order number is followed by its UIN), assignments (Staff console → Assignments shows the project's UIN and project lists show it next to each project), and the online data records (service_records rows carry the UIN).
 

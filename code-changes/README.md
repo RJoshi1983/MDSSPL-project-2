@@ -29,6 +29,7 @@ Original core fingerprint (SHA-256): `33f1a4265ce9898aa20e29ad57d9fd28e4bbf733c6
 | 11 | `11-v0.5.7.js` | v0.5.7 | 2026-11-03 | pamphlets and manuals cover every service, its scope and the scope for improvement | `57937524495e90df…` |
 | 12 | `12-v0.5.8.js` | v0.5.8 | 2026-11-03 | client numbers and project numbers (client code from e-mail, service groups, kind of work, date, running number) | `4344adfa08858054…` |
 | 13 | `13-v0.5.9.js` | v0.5.9 | 2026-11-03 | the project number (UIN) linked to payments, invoices, commissions, exports, assignments and data records | `bae07880b1a382e7…` |
+| 14 | `14-v0.6.0.js` | v0.6.0 | 2026-11-05 | assurance forms library and document generator for every service | `835de9eb5ea462ce…` |
 
 Back-end files: v0.5.5 `lib/server/licence.ts`, `app/api/licence/verify/route.ts`, `app/api/licence/public-key/route.ts`; v0.5.9 `app/api/pay/create/route.ts`. Letterhead files (v0.5.6): `public/letterheads/`.
 
