@@ -2,6 +2,12 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-06 — version 0.6.3
+- New colourful look on every page: each service group has a colour family and each of the 49 services its own shade (carbon and climate green, carbon markets cyan, energy/water/waste amber-blue-lime, ESG reporting indigo-violet, regulatory rust-orange, supply chain sky, social and governance magenta, biodiversity olive, analytics slate, certification gold, tax and legal crimson, business portals mixed). A colour bar along the top, soft page background, rounded cards with soft shadows and pill-shaped menu buttons.
+- Every service page opens with a banner in its colour (code, group, name, short description), and its buttons and headings take the service colour. The main pages (Registration, Services, Order, My orders, Manuals, Demo and guides, Staff console and others) have their own colour banners.
+- Service cards on the Services page show the service colour and a code badge; Staff console tabs are colour-coded by their group. Works in light and dark mode; banners are hidden when printing.
+- **GHG demo with dummy values** in GHG Accounting and in Demo and guides: Demo Manufacturing Pvt. Ltd. (Pune), FY 2025-26, base year FY 2022-23; month-by-month Scope 1, 2 and 3, sources ranked, this year against the base year and a 42% target path to FY 2029-30, sliders for production, efficiency, renewable share, CEA grid factor, diesel, EVs, flights and low-carbon steel, location- and market-based Scope 2, table view and the formulas.
+
 ## 2026-11-06 — version 0.6.2
 - Visiting cards → **Style the card**: one font for the whole card (20 fonts, including Hindi and Telugu), text size 70–140%, text colour (automatic, design, all dark, all light), symbols for phone, e-mail, website and address (line, filled, round badge, square badge or letters) and their colour, and about 30 backgrounds for the front, back or both (plain, tints, gradients, patterns, leaf watermark, brand stripes, my colour, my gradient, my picture).
 - Click any text on the card preview to change its words, size, font, colour, bold, italic or alignment, or hide it; changes are kept for each design and used when printing.

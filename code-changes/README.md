@@ -32,6 +32,7 @@ Original core fingerprint (SHA-256): `33f1a4265ce9898aa20e29ad57d9fd28e4bbf733c6
 | 14 | `14-v0.6.0.js` | v0.6.0 | 2026-11-05 | assurance forms library and document generator for every service | `835de9eb5ea462ce…` |
 | 15 | `15-v0.6.1.js` | v0.6.1 | 2026-11-05 | visiting cards for staff and admin (38 designs, website and save-contact QR codes, staff ID barcode, A4 print sheets) | `1cd335c0d69bd484…` |
 | 16 | `16-v0.6.2.js` | v0.6.2 | 2026-11-06 | visiting card designer (text size, fonts, click-to-edit text, backgrounds, contact icons, design-your-own layouts) and QR code generator | `e73af4de455e7b88…` |
+| 17 | `17-v0.6.3.js` | v0.6.3 | 2026-11-06 | colourful look for every page and service (colour per service and page, banners, coloured service cards and staff tabs) and a GHG demo with dummy values | `b427a3551f8de2d0…` |
 
 Back-end files: v0.5.5 `lib/server/licence.ts`, `app/api/licence/verify/route.ts`, `app/api/licence/public-key/route.ts`; v0.5.9 `app/api/pay/create/route.ts`. Letterhead files (v0.5.6): `public/letterheads/`.
 
