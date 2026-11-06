@@ -2,6 +2,12 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-06 — version 0.6.5
+- **Sample verification reports for every service** (Demo and guides, and a "See the sample report" link on every service page). Dummy client Demo Manufacturing Pvt. Ltd. (Pune), FY 2025-26, dummy MDSSPL team (lead, team member, technical expert, independent technical reviewer, approver) and client contacts. Each report shows: cover with project and statement numbers, criteria and level of assurance; a tracker of all nine steps with dates; Stage 1 data collection (the service's own evidence list); Stage 2 validation checks; Stage 3 calculation check of the figures as first submitted; Stage 4 verification (opening meeting, sampling plan, site visit, first-submitted against verified figures, CAR / CR / FAR findings with corrections, closing meeting, materiality); Stage 5 technical review (independence, 10-point checklist, reviewer queries and responses, recommendation); Stage 6 final approval (decision, conditions, sample signatures); the statement with the opinion for limited or reasonable assurance (or a quality review for business services); and the document list with MDSSPL document numbers. Dummy key figures for all 49 services; corrections carry through to totals and per-unit figures. Print or save as PDF.
+
+## 2026-11-06 — version 0.6.4
+- The colours now also cover the sidebar (professional) layout that visitors see by default: the selected side-menu item takes the page or service colour, the 13 service-group tiles on the home page each have their own colour, the group headers on the Services page are coloured by group, and every service icon takes its service colour.
+
 ## 2026-11-06 — version 0.6.3
 - New colourful look on every page: each service group has a colour family and each of the 49 services its own shade (carbon and climate green, carbon markets cyan, energy/water/waste amber-blue-lime, ESG reporting indigo-violet, regulatory rust-orange, supply chain sky, social and governance magenta, biodiversity olive, analytics slate, certification gold, tax and legal crimson, business portals mixed). A colour bar along the top, soft page background, rounded cards with soft shadows and pill-shaped menu buttons.
 - Every service page opens with a banner in its colour (code, group, name, short description), and its buttons and headings take the service colour. The main pages (Registration, Services, Order, My orders, Manuals, Demo and guides, Staff console and others) have their own colour banners.
