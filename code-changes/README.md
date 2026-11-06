@@ -35,6 +35,7 @@ Original core fingerprint (SHA-256): `33f1a4265ce9898aa20e29ad57d9fd28e4bbf733c6
 | 17 | `17-v0.6.3.js` | v0.6.3 | 2026-11-06 | colourful look for every page and service (colour per service and page, banners, coloured service cards and staff tabs) and a GHG demo with dummy values | `b427a3551f8de2d0…` |
 | 18 | `18-v0.6.4.js` | v0.6.4 | 2026-11-06 | colours for the sidebar (professional) layout: side menu, home page group tiles, Services page group headers and service icons | `746bbaddffaa0852…` |
 | 19 | `19-v0.6.5.js` | v0.6.5 | 2026-11-06 | sample verification reports with dummy names and data for every service (all stages to final approval), in Demo & guides and linked from every service page | `da054ed108c542a6…` |
+| 20 | `20-v0.6.6.js` | v0.6.6 | 2026-11-06 | consultancy sample reports for every service and a pop-up viewer with separate verification and consultancy tabs | `eb9609c790ff6344…` |
 
 Back-end files: v0.5.5 `lib/server/licence.ts`, `app/api/licence/verify/route.ts`, `app/api/licence/public-key/route.ts`; v0.5.9 `app/api/pay/create/route.ts`. Letterhead files (v0.5.6): `public/letterheads/`.
 
