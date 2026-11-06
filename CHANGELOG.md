@@ -2,6 +2,12 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-06 — version 0.6.2
+- Visiting cards → **Style the card**: one font for the whole card (20 fonts, including Hindi and Telugu), text size 70–140%, text colour (automatic, design, all dark, all light), symbols for phone, e-mail, website and address (line, filled, round badge, square badge or letters) and their colour, and about 30 backgrounds for the front, back or both (plain, tints, gradients, patterns, leaf watermark, brand stripes, my colour, my gradient, my picture).
+- Click any text on the card preview to change its words, size, font, colour, bold, italic or alignment, or hide it; changes are kept for each design and used when printing.
+- Two new layouts: X1 and X2 "Design your own".
+- **QR code generator**: website, save contact (vCard), WhatsApp, phone, SMS, e-mail, UPI payment, Wi-Fi, Google Maps location or text; colours, MDSSPL logo in the centre, caption, size; download PNG or SVG, or use it on the visiting card in place of the website QR code.
+
 ## 2026-11-05 — version 0.6.1
 - Staff console → Content and reports → **Visiting cards** (staff and administrator; also linked from Letterheads): 38 designs (Professional series P1–P8 and 30 creative designs A–AD) with the logo and company details from the letterhead; each person enters name, designation, phone, e-mail and staff ID; a website QR code and a save-contact (vCard) QR code are made from the details, and design F has a Code 128 staff ID barcode. Print A4 sheets of 10 fronts or 10 backs (89 × 51 mm, cut marks) or one card, or save as PDF for the print shop.
 
