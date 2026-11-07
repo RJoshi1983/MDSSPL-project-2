@@ -38,6 +38,7 @@ Original core fingerprint (SHA-256): `33f1a4265ce9898aa20e29ad57d9fd28e4bbf733c6
 | 20 | `20-v0.6.6.js` | v0.6.6 | 2026-11-06 | consultancy sample reports for every service and a pop-up viewer with separate verification and consultancy tabs | `eb9609c790ff6344…` |
 | 21 | `21-v0.6.7.js` | v0.6.7 | 2026-11-06 | new service ECBC / ECSBC Building Compliance with a floor-wise building model (heat gain and loss, electricity, thermal energy, water), embodied carbon, compliance check and standards with links (superseded by v0.6.8) | `c2182191e337e801…` |
 | 22 | `22-v0.6.8.js` | v0.6.8 | 2026-11-07 | ECBC service uses ASHRAE 2021 climatic design data (24 Indian stations), ASHRAE people heat gains, ASHRAE 62.1 outdoor air, psychrometric latent load, peak cooling (TR) and heating loads; ISHRAE handbook values can be entered | `4b0d0833bdb95be0…` |
+| 23 | `23-v0.6.9.js` | v0.6.9 | 2026-11-07 | Energy Audit: vapour absorption machine (VAM) equipment type; refrigerant-side chiller test (superheat, subcooling, approaches, lift, Carnot, leak tCO₂e); two-stream heat exchanger (balance, LMTD, U, fouling, ε–NTU); Waste heat & recovery tab with options, savings, measures, report section, Excel sheet and sample reports | `b713c70fdb259bfe…` |
 
 Back-end files: v0.5.5 `lib/server/licence.ts`, `app/api/licence/verify/route.ts`, `app/api/licence/public-key/route.ts`; v0.5.9 `app/api/pay/create/route.ts`. Letterhead files (v0.5.6): `public/letterheads/`.
 
