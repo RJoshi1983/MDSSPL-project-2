@@ -36,7 +36,8 @@ Original core fingerprint (SHA-256): `33f1a4265ce9898aa20e29ad57d9fd28e4bbf733c6
 | 18 | `18-v0.6.4.js` | v0.6.4 | 2026-11-06 | colours for the sidebar (professional) layout: side menu, home page group tiles, Services page group headers and service icons | `746bbaddffaa0852…` |
 | 19 | `19-v0.6.5.js` | v0.6.5 | 2026-11-06 | sample verification reports with dummy names and data for every service (all stages to final approval), in Demo & guides and linked from every service page | `da054ed108c542a6…` |
 | 20 | `20-v0.6.6.js` | v0.6.6 | 2026-11-06 | consultancy sample reports for every service and a pop-up viewer with separate verification and consultancy tabs | `eb9609c790ff6344…` |
-| 21 | `21-v0.6.7.js` | v0.6.7 | 2026-11-06 | new service ECBC / ECSBC Building Compliance with a floor-wise building model (heat gain and loss, electricity, thermal energy, water), embodied carbon, compliance check and standards with links | `c2182191e337e801…` |
+| 21 | `21-v0.6.7.js` | v0.6.7 | 2026-11-06 | new service ECBC / ECSBC Building Compliance with a floor-wise building model (heat gain and loss, electricity, thermal energy, water), embodied carbon, compliance check and standards with links (superseded by v0.6.8) | `c2182191e337e801…` |
+| 22 | `22-v0.6.8.js` | v0.6.8 | 2026-11-07 | ECBC service uses ASHRAE 2021 climatic design data (24 Indian stations), ASHRAE people heat gains, ASHRAE 62.1 outdoor air, psychrometric latent load, peak cooling (TR) and heating loads; ISHRAE handbook values can be entered | `4b0d0833bdb95be0…` |
 
 Back-end files: v0.5.5 `lib/server/licence.ts`, `app/api/licence/verify/route.ts`, `app/api/licence/public-key/route.ts`; v0.5.9 `app/api/pay/create/route.ts`. Letterhead files (v0.5.6): `public/letterheads/`.
 
