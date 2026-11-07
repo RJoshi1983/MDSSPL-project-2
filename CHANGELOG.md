@@ -2,6 +2,15 @@
 
 Add the newest change at the top. Each service also has its own `modules/<service>/CHANGELOG.md`.
 
+## 2026-11-08 — version 0.7.0
+- **EcoVadis Readiness: four new tabs.**
+  - **Questionnaire builder:** choose the sector (18 sectors, Europe, other markets and India), the markets (EU, Germany / France, UK, US, India, other Asia-Pacific, Middle East & Africa, other Americas) and the size (Essentials questionnaire for 1–25 employees; coverage questions for 1,000+). It shows the materiality of the 21 criteria, the theme weights, the sector modules (pharma, chemicals / REACH, carbon, packaging, textile, food and agri, minerals, electronics, construction, logistics, IT, process safety) and the laws behind the questions, then builds the questionnaire (2025 question codes plus sector modules). Each question shows the answer options, what you can prove for each, and how to answer: the manual, policy or procedure to have, the evidence to upload, traceability checks and the limitations.
+  - **Read a questionnaire PDF:** upload a blank or previously submitted EcoVadis questionnaire PDF. The questions, the entity name and the ticked answers (with linked documents) are read and mapped to the 2025 questions; older codes are mapped to their 2025 equivalents; unmatched answers are listed for manual review; new questions are added.
+  - **Gap review & rating:** indicative score per theme and overall (EcoVadis method weights, country adjustment, size bonus left out to stay conservative), medal estimate (indicative July 2024 cut-offs, no medal if a theme is below 30), and an essential or advanced plan with every gap ranked by priority, what to add with evidence, what evidence to fix and which document to develop. Gap review report in PDF, Word and Excel. The previous SMS Pharmaceuticals submission is included as a worked example.
+  - **Evidence & traceability:** one row per ticked option with document name, page, date, entity and sites, approver, valid-until date and the file (stored with its SHA-256 value); checks for missing documents, expiry (alerts 60 days ahead), KPIs older than 2 years and missing details.
+  - **Policy templates:** 8 core documents (ESG policy, environmental manual, GHG plan, OHS manual, human rights and labour policy, business ethics policy, sustainable procurement policy and supplier code, reporting and materiality procedure) in Word or PDF, pre-filled with the company name, commitments for the material criteria, an objectives and targets table, responsibilities, implementing procedures, review and approval.
+  - Sample verification and consultancy reports for EcoVadis Readiness now include the gap review.
+
 ## 2026-11-07 — version 0.6.9
 - **Energy Audit: cooling and heat recovery.**
   - **New equipment type: Vapour absorption machine (VAM)** (steam single or double effect, hot water, exhaust gas or direct fired). Readings on the chilled water, cooling water and heat input sides give cooling delivered (TR), heat input, COP against design, steam per TR, auxiliary kW per TR and the heat balance. A COP below 90% of design creates a measure with the fuel saved.
